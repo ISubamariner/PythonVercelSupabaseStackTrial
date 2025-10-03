@@ -1,0 +1,7 @@
+# Ignore local environment secrets
+.env
+
+# Ignore Python environment folders
+venv/
+__pycache__/
+*.pyc
