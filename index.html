@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vercel Supabase To-Do App</title>
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }
+        h1 { color: #0070f3; }
+        #todo-list { list-style: none; padding: 0; }
+        #todo-list li { padding: 10px; border-bottom: 1px solid #eee; }
+    </style>
+</head>
+<body>
+    <h1>My Supabase To-Do List</h1>
+    
+    <form id="todo-form">
+        <input type="text" id="task-input" placeholder="What needs to be done?" required style="padding: 10px; width: 70%; border: 1px solid #ccc;">
+        <button type="submit" style="padding: 10px; background-color: #0070f3; color: white; border: none; cursor: pointer;">Add Task</button>
+    </form>
+    
+    <hr style="margin: 20px 0;">
+    
+    <ul id="todo-list">
+        <li>Loading tasks...</li>
+    </ul>
+
+    <script src="app.js"></script>
+</body>
+</html>
