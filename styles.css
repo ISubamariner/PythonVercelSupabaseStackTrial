@@ -1,0 +1,60 @@
+/* styles.css (Located in the ROOT directory) */
+
+body { 
+    font-family: sans-serif; 
+    max-width: 600px; 
+    margin: 0 auto; 
+    padding: 20px; 
+}
+h1 { 
+    color: #0070f3; 
+}
+#todo-list { 
+    list-style: none; 
+    padding: 0; 
+}
+/* Style for list items */
+#todo-list li { 
+    padding: 10px; 
+    border-bottom: 1px solid #eee; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+}
+.task-text { 
+    flex-grow: 1; 
+}
+.done-task { 
+    text-decoration: line-through; 
+    color: #888; 
+}
+/* Form element styles */
+#todo-form input {
+    padding: 10px; 
+    width: 70%; 
+    border: 1px solid #ccc;
+}
+#todo-form button[type="submit"] {
+    padding: 10px; 
+    background-color: #0070f3; 
+    color: white; 
+    border: none; 
+    cursor: pointer;
+}
+.action-button { 
+    margin-left: 8px; 
+    padding: 4px 8px; 
+    cursor: pointer; 
+    border: none; 
+}
+.delete-btn { 
+    background-color: #f44336; 
+    color: white; 
+}
+.toggle-btn { 
+    background-color: #4CAF50; 
+    color: white; 
+}
+hr { 
+    margin: 20px 0; 
+}
