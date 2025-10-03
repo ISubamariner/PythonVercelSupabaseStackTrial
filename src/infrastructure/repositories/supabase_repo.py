@@ -4,6 +4,7 @@ from typing import List
 from supabase import Client
 from ...application.interfaces import ITodoRepository
 from ...domain.entities import Todo
+from ...domain.exceptions import TodoNotFoundError # NEW
 
 class SupabaseTodoRepository(ITodoRepository):
     """Concrete implementation of ITodoRepository using Supabase."""
@@ -40,3 +41,33 @@ class SupabaseTodoRepository(ITodoRepository):
             todo.is_complete = new_data['is_complete']
         
         return todo
+    
+    # --- New Method: Update Status ---
+    def update_status(self, todo_id: str, is_complete: bool) -> Todo:
+        # Supabase API call (update a row matching the ID)
+        response = self.client.table(self.table)\
+            .update({'is_complete': is_complete})\
+            .eq('id', todo_id)\
+            .execute()
+        
+        # If successful, map the returned data to a Todo entity
+        if response.data:
+            data = response.data[0]
+            return Todo(
+                id=str(data['id']), 
+                task=data['task'], 
+                is_complete=data['is_complete']
+            )
+       # CHANGE: Raise the specific Domain Exception
+        raise TodoNotFoundError(todo_id)
+
+    def delete(self, todo_id: str) -> bool:
+        # Supabase API call (delete a row matching the ID)
+        response = self.client.table(self.table)\
+            .delete()\
+            .eq('id', todo_id)\
+            .execute()
+        
+        # Supabase returns the deleted row in 'data'. If data is present, deletion was successful.
+        return bool(response.data)
+    
