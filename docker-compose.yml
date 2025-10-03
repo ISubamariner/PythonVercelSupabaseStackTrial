@@ -1,17 +1,19 @@
-version: '3.8'
-
-services:
-  # Define our Flask backend service
+services:  # No 'version: 3.8' line above this!
   backend:
-    # Build the image using the Dockerfile in the current directory
+    # ... (existing backend service definition) ...
     build: .
-    # Map the container's port 5000 to your host machine's port 5000
-    # This lets you access the app via http://localhost:5000
     ports:
       - "5000:5000"
-    # Load environment variables from the .env file securely
     env_file:
       - .env
-    # Mount the code for live development (optional, but helpful)
+    volumes:
+      - .:/usr/src/app
+  
+  # --- New Service for Running Tests ---
+  tests:
+    build: .
+    env_file:
+      - .env
+    command: python -m pytest
     volumes:
       - .:/usr/src/app
